@@ -1,3 +1,4 @@
+/*
 package com.maikcaru.historicalyork;
 
 import android.content.Context;
@@ -8,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+*/
 /**
  * Created by michael.carr on 28/04/15.
- */
+ *//*
+
 public class myViewPager extends ViewPager {
 
 
@@ -75,3 +78,4 @@ public class myViewPager extends ViewPager {
         return true;
     }
 }
+*/
