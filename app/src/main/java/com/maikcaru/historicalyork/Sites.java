@@ -45,8 +45,8 @@ public class Sites {
         list = null;
         int eventType = parser.getEventType();
         Site currentSite = null;
-        double templat = 0;
-        double templng = 0;
+        double temp_lat = 0;
+        double temp_lng = 0;
         while (eventType != XmlPullParser.END_DOCUMENT) {
             String tag = null;
             switch (eventType) {
@@ -61,10 +61,10 @@ public class Sites {
                         if (tag.equals("name")) {
                             currentSite.setName(parser.nextText());
                         } else if (tag.equals("lat")) {
-                            templat = Double.valueOf(parser.nextText());
+                            temp_lat = Double.valueOf(parser.nextText());
                         } else if (tag.equals("lng")) {
-                            templng = Double.valueOf(parser.nextText());
-                            currentSite.setLatLng(new LatLng(templat, templng));
+                            temp_lng = Double.valueOf(parser.nextText());
+                            currentSite.setLatLng(new LatLng(temp_lat, temp_lng));
                         } else if (tag.equals("info")) {
                             currentSite.setInfo(parser.nextText());
                         } else if (tag.equals("image")){

@@ -23,8 +23,6 @@ public class SiteFragment extends Fragment {
     public void updateUI(){
         if (getActivity() != null) {
 
-
-
             selectedIndex = ((MainActivity) getActivity()).getSelectedIndex();
             TextView infoText = (TextView) view.findViewById(R.id.info);
             if (selectedIndex != -1){
@@ -43,6 +41,7 @@ public class SiteFragment extends Fragment {
             }
             else {
                 infoText.setTextSize(40);
+                infoText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             }
         }
     }
@@ -55,9 +54,9 @@ public class SiteFragment extends Fragment {
         }
 
     }
-    public void setSelectedIndex(int i){
-        selectedIndex = i;
-    }
+
+
+
 }
 
 

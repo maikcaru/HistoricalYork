@@ -79,8 +79,6 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
-
-
         return view;
     }
 
@@ -91,8 +89,6 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
         if (isVisibleToUser && mGoogleApiClient != null ){
             int selectedIndex = ((MainActivity)getActivity()).getSelectedIndex();
             if(selectedIndex != -1){
-
-
                 destination = Sites.get(getActivity()).getAllSites().get(selectedIndex);
                 onLocationChanged(LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient));
             }
@@ -184,7 +180,6 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
         // Downloading data in non-ui thread
         @Override
         protected String doInBackground(String... url) {
-
             // For storing data from web service
             String data = "";
 
@@ -203,9 +198,7 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-
             ParserTask parserTask = new ParserTask();
-
             // Invokes the thread for parsing the JSON data
             parserTask.execute(result);
         }
@@ -287,7 +280,6 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
 
     @Override
     public void onLocationChanged(Location location) {
-        //Log.e("Test", "location changed");
 
         if (destination == null) {
             return;
@@ -295,9 +287,6 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
 
         if(location!=null) {
             LatLng latlngLocation = new LatLng(location.getLatitude(), location.getLongitude());
-
-            //Log.e("Longitude", "" + latlngLocation.longitude);
-            //Log.e("Latitude", "" + latlngLocation.latitude);
 
             String url = getDirectionsUrl(latlngLocation, destination.getLatLng());
             DownloadTask downloadTask = new DownloadTask();
@@ -359,7 +348,6 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
         });
         addMarkers();
 
-
         mMap.setMyLocationEnabled(true);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(53.959965, -1.087298), 14.0f));
 
@@ -367,9 +355,9 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                ((MainActivity)getActivity()).setSelectedIndex(Sites.get(getActivity()).getIndex(marker));
-                Log.e("Selected index in map","" +((MainActivity)getActivity()).getSelectedIndex());
-                ((MainActivity)getActivity()).getViewPager().setCurrentItem(1);
+                MainActivity mA = ((MainActivity)getActivity());
+                mA.setSelectedIndex(Sites.get(getActivity()).getIndex(marker));
+                mA.getViewPager().setCurrentItem(1);
 
             }
         });
