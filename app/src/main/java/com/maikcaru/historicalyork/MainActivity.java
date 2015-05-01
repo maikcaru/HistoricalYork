@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener{
@@ -23,27 +24,21 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        Log.e("HI THERE", "HEYso");
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayShowHomeEnabled(false);  // hides action bar icon
         actionBar.setDisplayShowTitleEnabled(false); //hides action bar title
+
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
-      //viewPager.setCurrentItem(0);
-
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 actionBar.setSelectedNavigationItem(position);
-                Fragment f = pagerAdapter.getItem(position);
-                if (f instanceof SiteFragment){
-                    SiteFragment sf = ((SiteFragment)f);
-                    sf.setSelectedIndex(getSelectedIndex());
-                    sf.updateUI();
-
                 }
-            }
         });
 
         // For each of the sections in the app, add a tab to the action bar.
@@ -57,6 +52,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                             .setText(pagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+        setSelectedIndex(-1);
     }
 
     public ViewPager getViewPager(){

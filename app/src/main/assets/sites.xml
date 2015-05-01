@@ -28,9 +28,9 @@
 
 
 <site>
-  <name>Merchant Adventurers' Hall</name>
-  <lat>53.958183</lat>
-  <lng>-1.078568</lng>
+<name>Merchant Adventurers' Hall</name>
+<lat>53.958183</lat>
+<lng>-1.078568</lng>
 <info>The Merchant Adventurers’ Hall is one of York’s medieval marvels. Set in beautiful gardens in the heart of historical York, it is open for public use as a museum, wedding and hospitality venue and meeting place some 650 years after construction began in 1357. This stunning timber framed building was constructed by a fraternity made up of York citizens to provide a base for charity, worship and business. Today, as well as being a fascinating accredited museum it is also a scheduled ancient monument and Grade 1 listed building.The Hall is home to many remarkable collections. Including silver, furniture and paintings, which provide a glimpse into the rich history of the Hall and the people associated with it. The Hall also remains the everyday base for the Company of Merchant Adventurers of the City of York. They invite you to discover the secrets of this unique guild hall and its 650 years of history.</info>
 <image>merchant</image>
 </site>
@@ -52,10 +52,13 @@
 <lng>-1.089427</lng>
 <info>This timber-framed building was built in the early 1300s, and is believed to have been used as lodging for weary travelers visiting St. Mary's Abbey. It's not known for sure what it was originally used for, the official listing of the building suggests that it was a place for visitors to stay.  There was a gate onto the river right next to the Hospitium so  it would have been well placed to serve guests arriving by boat. The Hospitium has had several different uses and a number of renovations over the years.  The earliest images show it used as a farm building or derelict.  In the 19th century, the Yorkshire Philosophical Society  repaired the building and used it to display museum objects.  In the 1930s the upper storey was extended with a new roof.</info><image>hospitium</image></site>
 
-<site><name>Clifford's Tower</name>
+<site>
+<name>Clifford's Tower</name>
 <lat>53.955803</lat>
 <lng>-1.079974</lng>
-<info>Clifford's Tower is all that remains of York Castle. It's set upon a mound which was originally built by William the Conqueror. After a major explosion in 1684 rendered the remaining military defences uninhabitable, the tower continued to be used as a jail and prison until 1929. In 1190, 150 local Jews were killed in a pogrom in the castle keep. Henry III rebuilt the castle in stone in the middle of the 13th century, creating a keep with a unique quatrefoil design, supported by an outer bailey wall and a substantial gatehouse.</info><image>cliffordstower</image></site>
+<info>Clifford's Tower is all that remains of York Castle. It's set upon a mound which was originally built by William the Conqueror. After a major explosion in 1684 rendered the remaining military defences uninhabitable, the tower continued to be used as a jail and prison until 1929. In 1190, 150 local Jews were killed in a pogrom in the castle keep. Henry III rebuilt the castle in stone in the middle of the 13th century, creating a keep with a unique quatrefoil design, supported by an outer bailey wall and a substantial gatehouse.</info>
+<image>cliffordstower</image>
+</site>
 
 
 

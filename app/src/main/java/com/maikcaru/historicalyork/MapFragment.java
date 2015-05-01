@@ -1,19 +1,18 @@
 package com.maikcaru.historicalyork;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -29,7 +28,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -51,7 +52,7 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
     private FusedLocationProviderApi fusedLocationProviderApi = LocationServices.FusedLocationApi;
     GoogleApiClient mGoogleApiClient;
     LocationRequest mLocationRequest;
-    private FragmentActivity myContext;
+    private ArrayList<Polyline> polylines = new ArrayList<Polyline>();
     private static final long INTERVAL = 1000 * 10;
     private static final long FASTEST_INTERVAL = 1000 * 5;
 
@@ -78,10 +79,27 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
-        destination = Sites.get(getActivity()).getAllSites().get(((MainActivity)getActivity()).getSelectedIndex());
+
 
         return view;
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser){
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if (isVisibleToUser && mGoogleApiClient != null ){
+            int selectedIndex = ((MainActivity)getActivity()).getSelectedIndex();
+            if(selectedIndex != -1){
+
+
+                destination = Sites.get(getActivity()).getAllSites().get(selectedIndex);
+                onLocationChanged(LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient));
+            }
+        }
+    }
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -219,6 +237,12 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
             ArrayList<LatLng> points = null;
             PolylineOptions lineOptions = null;
 
+            for(Polyline line : polylines)
+            {
+                line.remove();
+            }
+            polylines.clear();
+
             // Traversing through all the routes
             for(int i=0;i<result.size();i++){
                 points = new ArrayList<LatLng>();
@@ -246,7 +270,7 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
 
             // Drawing polyline in the Google Map for the i-th route
             if (lineOptions != null) {
-                mMap.addPolyline(lineOptions);
+                polylines.add(mMap.addPolyline(lineOptions));
             }
         }
     }
@@ -362,11 +386,4 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
             Sites.get(getActivity()).setMarkerForSite(marker, current);
         }
     }
-
-    @Override
-    public void onAttach(Activity activity){
-        myContext = (FragmentActivity) activity;
-        super.onAttach(activity);
-    }
-
 }

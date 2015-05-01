@@ -3,15 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.maikcaru.historicalyork.SiteFragment">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:textAlignment="center"
+        android:text="30dp"
+        android:id="@+id/title"
+        android:layout_above="@+id/scrollview"
+        />
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollview">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -24,9 +31,10 @@
                 android:adjustViewBounds="true"/>
 
             <TextView
+                android:padding="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Information goes here"
+                android:text="@string/no_site"
                 android:fontFamily="sans-serif-light"
                 android:textAlignment="center"
                 android:id="@+id/info" />

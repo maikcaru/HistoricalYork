@@ -70,7 +70,6 @@ public class Sites {
                         } else if (tag.equals("image")){
                             currentSite.setImageLocation(parser.nextText());
                         }
-
                     }
                     break;
                 case XmlPullParser.END_TAG:
