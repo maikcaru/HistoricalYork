@@ -19,6 +19,10 @@ import java.util.LinkedHashMap;
  */
 public class Sites {
 
+    private ArrayList<Site> list;
+    private LinkedHashMap<Marker, Site> markers;
+
+    //Constructor method for sites which pulls in the information from the XML file
     public Sites(Context context) {
         list = new ArrayList<Site>();
         markers = new LinkedHashMap<Marker, Site>();
@@ -41,6 +45,7 @@ public class Sites {
         }
     }
 
+    //Parses the XML file to pull the information about each site
     private void parseXML(XmlPullParser parser) throws XmlPullParserException, IOException {
         list = null;
         int eventType = parser.getEventType();
@@ -83,34 +88,27 @@ public class Sites {
 
     }
 
-
-
-
-
-        /* XXX: load this in from XML/whatever */
-
-
+    //Correlates the marker with a site
     void setMarkerForSite(Marker m, Site s) {
         markers.put(m, s);
     }
 
+    //Returns the list of all the sites
     ArrayList<Site> getAllSites() {
         return list;
     }
 
+    //Returns a particular site when given the marker
     Site getSite(Marker marker) {
         return markers.get(marker);
     }
 
+    //Return the index of a particular site
     int getIndex(Marker marker){
         return list.indexOf(getSite(marker));
-
     }
 
-
-    private ArrayList<Site> list;
-    private LinkedHashMap<Marker, Site> markers;
-
+    //Returns the existing the Site object if
     public static Sites get(Context context) {
         if (sites == null) {
             sites = new Sites(context);

@@ -1,6 +1,5 @@
 package com.maikcaru.historicalyork;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
@@ -56,6 +55,7 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
     private static final long INTERVAL = 1000 * 10;
     private static final long FASTEST_INTERVAL = 1000 * 5;
 
+    //Sets-up the location requests
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(INTERVAL);
@@ -63,6 +63,7 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
+    //Inflate the view,set up the map and initialise the map
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +83,7 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
         return view;
     }
 
+    //Overrides what happens when this method is called (which occurs when the fragment becomes visible)
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser){
         super.setUserVisibleHint(isVisibleToUser);
@@ -95,7 +97,7 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
         }
     }
 
-
+    //Connects the location services
     @Override
     public void onStart() {
         super.onStart();
@@ -105,9 +107,9 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
     @Override
     public void onStop() {
         super.onStop();
-        //mGoogleApiClient.disconnect();
     }
 
+    //Builds up the URL needed for the directions
     private String getDirectionsUrl(LatLng origin,LatLng dest){
         // Origin of route
         String str_origin = "origin="+origin.latitude+","+origin.longitude;
@@ -125,6 +127,8 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
         //Log.e("Directions", url);
         return url;
     }
+
+    //Downloads the data from the URL requested
     private String downloadUrl(String strUrl) throws IOException {
         String data = "";
         URL url = new URL(strUrl);
@@ -134,19 +138,15 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
         urlConnection.connect();
 
         try (InputStream iStream = urlConnection.getInputStream()) {
-
             // Reading data from url
             BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
-
             StringBuffer sb = new StringBuffer();
 
             String line = "";
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
-
             data = sb.toString();
-
             br.close();
 
         } catch (Exception e) {
@@ -185,7 +185,6 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
 
             try{
                 // Fetching the data from web service
-                //Log.e("Download", url[0]);
                 data = downloadUrl(url[0]);
             }catch(Exception e){
                 Log.d("Background Task", e.toString());
@@ -295,11 +294,7 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
             downloadTask.execute(url);
         }
         else{
-            Context context = getActivity();
-            CharSequence text = "No location available, try enabling GPS";
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
+            Toast toast = Toast.makeText(getActivity(), "No location available", Toast.LENGTH_SHORT);
             toast.show();
         }
 

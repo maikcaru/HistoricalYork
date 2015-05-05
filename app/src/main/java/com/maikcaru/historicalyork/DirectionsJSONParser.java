@@ -1,9 +1,4 @@
 package com.maikcaru.historicalyork;
-
-/**
- * Created by Mikey on 23/03/2015.
- */
-
 import com.google.android.gms.maps.model.LatLng;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,6 +10,7 @@ import java.util.List;
 
 public class DirectionsJSONParser {
 
+    /** This class was taken from http://javapapers.com/ **/
     /** Receives a JSONObject and returns a list of lists containing latitude and longitude */
     public List<List<HashMap<String,String>>> parse(JSONObject jObject){
 

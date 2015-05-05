@@ -22,9 +22,11 @@ public class SiteFragment extends Fragment {
 
     public void updateUI(){
         if (getActivity() != null) {
-
+            //If a site has selectedIndex will show that site otherwise it will be -1
             selectedIndex = ((MainActivity) getActivity()).getSelectedIndex();
             TextView infoText = (TextView) view.findViewById(R.id.info);
+
+            //If index is not -1 show the information about the site
             if (selectedIndex != -1){
                 Site selected = Sites.get(getActivity()).getAllSites().get(selectedIndex);
 
@@ -39,6 +41,7 @@ public class SiteFragment extends Fragment {
                 Drawable d = getResources().getDrawable(imageID);
                 image.setImageDrawable(d);
             }
+            //Otherwise set the text size to be bigger and central.
             else {
                 infoText.setTextSize(40);
                 infoText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -46,16 +49,14 @@ public class SiteFragment extends Fragment {
         }
     }
 
+    //When the fragment is shown update the UI to display the last clicked site
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser){
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser){
             updateUI();
         }
-
     }
-
-
 
 }
 

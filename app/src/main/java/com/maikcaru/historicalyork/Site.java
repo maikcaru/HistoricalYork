@@ -17,14 +17,6 @@ public class Site implements Serializable{
 
     public Site(){}
 
-
-    public Site (String name, LatLng latlng, String info){
-
-        this.name = name;
-        this.latlng = latlng;
-        this.info = info;
-    }
-
     public String getName(){
         return this.name;
     }
@@ -44,7 +36,6 @@ public class Site implements Serializable{
     public void setImageLocation(String imageLocation) {
         this.imageLocation = imageLocation;
     }
-
     public String getImageLocation() {
         return imageLocation;
     }
