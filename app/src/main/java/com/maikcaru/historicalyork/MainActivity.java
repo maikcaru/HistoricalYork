@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener{
@@ -24,8 +23,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        Log.e("HI THERE", "relative black");
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayShowHomeEnabled(false);  // hides action bar icon
@@ -52,6 +49,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                             .setText(pagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+
+        //Indicate no site has been selected
         setSelectedIndex(-1);
     }
 

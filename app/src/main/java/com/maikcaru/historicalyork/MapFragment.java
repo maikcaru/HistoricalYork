@@ -108,7 +108,7 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
     public void onStop() {
         super.onStop();
     }
-
+    /** This method was taken from http://javapapers.com/ **/
     //Builds up the URL needed for the directions
     private String getDirectionsUrl(LatLng origin,LatLng dest){
         // Origin of route
@@ -127,7 +127,7 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
         //Log.e("Directions", url);
         return url;
     }
-
+    /** This method was taken from http://javapapers.com/ **/
     //Downloads the data from the URL requested
     private String downloadUrl(String strUrl) throws IOException {
         String data = "";
@@ -173,7 +173,7 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
-
+    /** This method was taken from http://javapapers.com/ **/
     // Fetches data from url passed
     private class DownloadTask extends AsyncTask<String, Void, String> {
 
@@ -202,6 +202,7 @@ public class MapFragment extends Fragment implements LocationListener, GoogleApi
             parserTask.execute(result);
         }
     }
+    /** This method was taken from http://javapapers.com/ **/
     /** A class to parse the Google Places in JSON format */
     private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String,String>>> >{
 
